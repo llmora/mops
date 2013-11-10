@@ -1,0 +1,11 @@
+<input type="text" ng-model="search" class="form-control" placeholder="Search">
+
+  <p class="lead">Services</p>
+  <p>Select a service to edit</p>
+  <div class="example">
+    <ul class="list-group">
+      <li class="list-group-item" ng-repeat="service in services | filter: search | orderBy: '+service.name'">
+      <a href data-original-title="Edit service" data-toggle="tooltip" data-placement="top" title="" ng-click="go('/app/service/' + service.name + '/' + service.version)"><span class="glyphicon glyphicon-pencil"></span></a> {{service.name}} {{service.version}}
+      </li>
+    </ul>
+  </div>

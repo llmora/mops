@@ -1,0 +1,61 @@
+
+<form class="form-horizontal" role="form">
+  <div class="form-group">
+    <label for="service-name">Service name</label>
+    <input type="text" ng-show="servicename != 'new'" class="form-control" id="service-name" placeholder="Service name" ng-model="service.name" disabled>
+    <input type="text" ng-show="servicename == 'new'" class="form-control" id="service-name" placeholder="Service name" ng-model="service.name">
+  </div>
+
+  <div class="form-group">
+    <label for="service-version">Service version</label>
+    <input type="text" ng-show="servicename != 'new'" class="form-control" id="service-version" placeholder="Service version" ng-model="service.version" disabled>
+    <input type="text" ng-show="servicename == 'new'" class="form-control" id="service-version" placeholder="Service version" ng-model="service.version">
+  </div>
+
+  <div class="form-group">
+    <label for="service-description">Service description</label>
+    <textarea class="form-control" id="service-description" ng-model="service.description" rows="3"></textarea>
+  </div>
+
+  <p class="lead">Interfaces</p>
+  <p>Specify the interfaces this service is available on</p>
+  <div class="example">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Add an interface..." ng-model="interfaceName">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" ng-click="addInterface()">Add</button>
+      </span>
+    </div>
+    <ul class="list-group example">
+      <li class="list-group-item" ng-repeat="interface in service.interfaces">
+      <a href data-original-title="Remove interface" data-toggle="tooltip" data-placement="top" title="" ng-click="deleteInterface(interface)"><span class="glyphicon glyphicon-minus-sign"></span></a> {{interface}}
+      </li>
+    </ul>
+  </div>
+
+  <p class="lead">Dependencies</p>
+  <p>Specify the dependencies this service has</p>
+
+  <div class="example">
+    <div class="input-group">
+      <input type="text" class="form-control" keyboard-poster post-function="searchService" ng-model="dependency" placeholder="Add a dependency..." list="dependencies">
+      <datalist id="dependencies">
+        <select style="display: none;" id="_select" name="_select" ng-model="dependency_input" ng-options='v as k for (k,v) in services'></select>
+      </datalist>
+
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" ng-click="addDependency()">Add</button>
+      </span>
+    </div>
+    <ul class="list-group example">
+      <li class="list-group-item" ng-repeat="dependency in service.dependencies">
+      <a href data-original-title="Remove dependency" data-toggle="tooltip" data-placement="top" title="" ng-click="deleteDependency(dependency)"><span class="glyphicon glyphicon-minus-sign"></span></a> {{dependency}}
+      </li>
+    </ul>
+  </div>
+
+ <a href="#/app/service" class="btn btn-default">Cancel</a>
+ <button ng-click="save()" ng-disabled="isClean() || myForm.$invalid" class="btn btn-primary">Save</button>
+ <button ng-click="destroy()" ng-show="servicename" class="btn btn-danger">Delete</button>
+
+</form>

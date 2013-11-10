@@ -1,0 +1,29 @@
+
+<form class="form-horizontal" role="form">
+  <div class="form-group">
+    <label for="package-name">Package name</label>
+    <input type="text" ng-show="packagename != 'new'" class="form-control" id="package-name" placeholder="Package name" ng-model="pkg.name" disabled>
+    <input type="text" ng-show="packagename == 'new'" class="form-control" id="package-name" placeholder="Package name" ng-model="pkg.name">
+  </div>
+
+  <p class="lead">Services</p>
+  <p>Specify the services included in this package</p>
+  <div class="example">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Add a service..." ng-model="service">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" ng-click="addService()">Add</button>
+      </span>
+    </div>
+    <ul class="list-group example">
+      <li class="list-group-item" ng-repeat="service in pkg.services">
+      <a href data-original-title="Remove service" data-toggle="tooltip" data-placement="top" title="" ng-click="deleteService(service)"><span class="glyphicon glyphicon-minus-sign"></span></a> {{service}}
+      </li>
+    </ul>
+  </div>
+
+ <a href="#/app/package" class="btn btn-default">Cancel</a>
+ <button ng-click="save()" ng-disabled="isClean() || myForm.$invalid" class="btn btn-primary">Save</button>
+ <button ng-click="destroy()" ng-show="packagename != 'new'" class="btn btn-danger">Delete</button>
+
+</form>

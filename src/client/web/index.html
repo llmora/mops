@@ -1,0 +1,87 @@
+<!doctype html>
+
+<html ng-app="fw">
+
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link href="css/starter-template.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+  <nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="MenuCtrl" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Firewall management</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#/">Home</a></li>
+            <li><a href="#/doc">Documentation</a></li>
+            <li ng-show="isLoggedIn" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Services<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#/app/service">Services list</a></li>
+                <li><a href="#/app/service/new">Create new service...</a></li>
+              </ul>
+            </li>
+            <li ng-show="isLoggedIn" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Packages<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#/app/package">Packages list</a></li>
+                <li><a href="#/app/package/new">Create new package...</a></li>
+              </ul>
+            </li>
+          </ul>
+          <div class="nav navbar-right">
+            <ul ng-show="isLoggedIn" class="nav navbar-nav">
+              <li><p class="nav navbar-text">Logged in as <strong>{{username}}</strong></p></li>
+              <li><form class="navbar-form"><button type="button" class="btn btn-danger btn-sm" ng-click="logout()">Logout</button></form></li>
+            </ul>
+
+            <ul ng-show="!isLoggedIn" class="nav navbar-nav">
+              <form class="navbar-form navbar-right" ng-submit="login()">
+                <div class="form-group">
+                  <input type="text" placeholder="Email" class="form-control" ng-model="user.username">
+                </div>
+                <div class="form-group">
+                  <input type="password" placeholder="Password" class="form-control" ng-model="user.password">
+                </div>
+                <button type="submit" class="btn btn-success btn-sm">Sign in</button>
+                <button type="button" class="btn btn-primary btn-sm" ng-click="register()">Register</button>
+              </form>
+            </ul>
+          </div>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+        
+    
+    {{ message }}
+
+    <div class="container">
+      <div ng-view></div>
+    </div>
+
+    <!-- Load javascript at the end, so that page loads faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular-resource.min.js"></script>
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="fw.js"></script>
+    <script>$('a').tooltip('show')</script>
+
+  </body>
+</html>
