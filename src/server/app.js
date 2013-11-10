@@ -251,7 +251,7 @@ mongodb.connect('mongodb://127.0.0.1:27017/fw', function(err, dbhandle) {
   var LISTENER_PORT = 9443;
   var CERT_FILE = 'ssl-cert-snakeoil.pem';
   var KEY_FILE = 'ssl-cert-snakeoil.key';
-  var DOCUMENT_ROOT = '/var/www/fw.pentestic.com/htdocs/'
+  var DOCUMENT_ROOT = '.'
 
   var options = {
     key: fs.readFileSync(KEY_FILE),
